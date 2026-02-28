@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <title>Sign Up</title>
+
+        <style>
+
+            form {
+                border-radius: 5px;
+                background-color: #22a7ac;
+                padding: 20px;
+            }
+
+            label {display: block;}
+
+            input[type=text], select {
+                width: 50%;
+                padding: 12px;
+                margin: 8px;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            .btn {
+                width: 50%;
+                background-color: #333333;
+                color: white;
+                padding: 14px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .btn:hover {
+                background-color: #111111;
+            }
+
+            input[type=text]:focus {
+                background-color: lightgrey;
+            }
+
+            #birthdate {
+                width: 48%;
+                background-color: #672169;
+                color: white;
+                padding: 14px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                text-align: center;
+            }
+
+            #birthdate:hover {
+                background-color: #672169;
+            }
+
+            body {
+                background-color:beige;
+                text-align:center;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <h2>Sign Up</h2>
+
+        <form> <label for="fullname">Full name:</label><br>
+               <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                placeholder="Your full name"><br>
+
+               <label for="nickname">Nickname:</label><br>
+               <input
+                type="text"
+                id="nickname"
+                name="nickname"
+                placeholder="Your nickname"><br>
+
+                <label for="address">address:</label><br>
+                <input
+                type="text"
+                id="address"
+                name="address"
+                placeholder="Your address"><br>
+
+               <label for="birthdate">Birthdate:</label><br>
+               <input
+                type="date"
+                id="birthdate"
+                name="birthdate"
+                placeholder="Your birthdate"><br>
+
+               <label for="contact">Contact No:</label><br>
+               <input
+                type="text"
+                id="contact"
+                name="contact"
+                placeholder="Your contact number"><br>
+
+               <label for="username">Username:</label><br>
+               <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Your username"><br>
+
+               <label for="email">Email:</label><br>
+               <input
+                type="text"
+                id="email"
+                name="email"
+                placeholder="Your email"><br>
+
+               <label for="password">Password:</label><br>
+               <input
+                type="text"
+                id="password"
+                name="password"
+                placeholder="Your password"><br><br>
+
+               <input
+                type="button"
+                class="btn"
+                onclick="signup(event)"
+                value="Submit"><br><br>
+        </form>
+
+        <p>Already have an account?
+            <a href="login.html">Login here</a></p>
+              <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+
+    $(".btn").click(function(e) {
+        e.preventDefault();
+
+        let fullname = $("#fullname").val();
+        let nickname = $("#nickname").val();
+        let address = $("#address").val();
+        let birthdate = $("#birthdate").val();
+        let contact = $("#contact").val();
+        let username = $("#username").val();
+        let email = $("#email").val();
+        let password = $("#password").val();
+
+        if (!fullname || !nickname || !address || !birthdate ||
+            !contact || !username || !email || !password) {
+            alert("All fields are required!");
+            return;
+        }
+
+        if (isNaN(contact)) {
+            alert("Contact must be numbers only!");
+            return;
+        }
+
+        let user = {
+            fullname: fullname,
+            nickname: nickname,
+            address: address,
+            birthdate: birthdate,
+            contact: contact,
+            username: username,
+            email: email,
+            password: password
+        };
+
+        // Get existing users
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        // Add new user
+        users.push(user);
+
+        // Save back to localStorage
+        localStorage.setItem("users", JSON.stringify(users));
+
+        alert("User Successfully Registered!");
+
+        window.location.href = "login.html";
+    });
+
+});
+</script>
+
+
+        <script>
+
+            function signup(event) {
+                event.preventDefault();
+
+                const fullname=document.getElementById("fullname").value;
+                const nickname=document.getElementById("nickname").value;
+                const address=document.getElementById("address").value;
+                const birthdate=document.getElementById("birthdate").value;
+                const contact=document.getElementById("contact").value;
+                const username=document.getElementById("username").value;
+                const email=document.getElementById("email").value;
+                const password=document.getElementById("password").value;
+
+                if (fullname=="") {
+                    alert("Fullname empty");
+                }
+                if (nickname=="") {
+                    alert("nickname empty");
+                }
+                if (address=="") {
+                    alert("address empty");
+                }
+                if (birthdate=="") {
+                    alert("birthdate empty");
+                }
+                if (contact=="") {
+                    alert("contact empty");
+                }
+                else if (isNaN(contact)) {
+                    alert("invalid contact")
+                }
+                if (username=="") {
+                    alert("username empty");
+                }
+                if (email=="") {
+                    alert("email empty");
+                }
+                if (password=="") {
+                    alert("password empty");
+                }  
+
+                console.log(fullname);
+                console.log(nickname);
+                console.log(address);
+                console.log(birthdate);
+                console.log(contact);
+                console.log(username);
+                console.log(email);
+                console.log(password);
+
+                documnent.getElementById(credentials).InnerHTML=
+                    "fullname"+fullname
+                    "nickname"+nickname
+                    "address"+adrdess
+                    "birthday"+birthdate
+                    "contact"+contact
+                    "username"+username
+                    "email"+email
+                    "password"+password
+            }
+
+    
+        let users = [];
+
+   
+        function calculateAge(birthdate) {
+        const today = new Date();
+        const birth = new Date(birthdate);
+        let age = today.getFullYear() - birth.getFullYear();
+        return age;
+}
+
+    
+        function signup(event) {
+        event.preventDefault();
+
+        const fullname = document.getElementById("fullname").value;
+        const nickname = document.getElementById("nickname").value;
+        const address = document.getElementById("address").value;
+        const birthdate = document.getElementById("birthdate").value;
+        const contact = document.getElementById("contact").value;
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+   
+        if (!fullname || !nickname || !address || !birthdate ||
+        !contact || !username || !email || !password) {
+        alert("All fields are required!");
+        return;
+        }
+
+    if (isNaN(contact)) {
+        alert("Contact must be numbers only!");
+        return;
+    }
+
+    
+    const user = {
+        fullname: fullname,
+        nickname: nickname,
+        address: address,
+        birthdate: birthdate,
+        age: calculateAge(birthdate),
+        contact: contact,
+        username: username,
+        email: email,
+        password: password
+    };
+
+    
+        users.push(user);
+
+        console.log("All Users:");
+
+    
+        users.forEach(function(u, index) {
+        console.log("User #" + (index + 1));
+        console.log("Name:", u.fullname);
+        console.log("Age:", u.age);
+        console.log("Email:", u.email);
+        });
+
+    alert("User Successfully Added!");
+
+    
+    if (users.length > 5) {
+        users.splice(0, 1);
+        console.log("First user removed using splice()");
+    }
+}
+        
+
+    $(document).ready(function() {
+    
+    let users = [];
+
+   
+    function calculateAge(birthdate) {
+        const today = new Date();
+        const birth = new Date(birthdate);
+        let age = today.getFullYear() - birth.getFullYear();
+        return age;
+    }
+
+    
+    $(".btn").click(function(e) {
+        e.preventDefault();
+
+       
+        let fullname = $("#fullname").val();
+        let nickname = $("#nickname").val();
+        let address = $("#address").val();
+        let birthdate = $("#birthdate").val();
+        let contact = $("#contact").val();
+        let username = $("#username").val();
+        let email = $("#email").val();
+        let password = $("#password").val();
+
+        
+        if (!fullname || !nickname || !address || !birthdate ||
+            !contact || !username || !email || !password) {
+            alert("All fields required!");
+            return;
+        }
+
+        if (isNaN(contact)) {
+            alert("Contact must be numbers only!");
+            return;
+        }
+
+        
+        let user = {
+            fullname: fullname,
+            nickname: nickname,
+            address: address,
+            birthdate: birthdate,
+            age: calculateAge(birthdate),
+            contact: contact,
+            username: username,
+            email: email,
+            password: password
+        };
+
+        
+        users.push(user);
+
+        console.log("All Users:");
+        
+        
+        $.each(users, function(index, u) {
+            console.log("User #" + (index + 1));
+            console.log("Name:", u.fullname);
+            console.log("Age:", u.age);
+        });
+
+        alert("User Added Successfully!");
+
+        // SET (Clear Form)
+        $("input[type=text], input[type=date]").val("");
+
+    });
+
+});
+
+$(".btn").click(function(e) {
+    e.preventDefault();
+
+    let fullname = $("#fullname").val();
+    let nickname = $("#nickname").val();
+    let address = $("#address").val();
+    let birthdate = $("#birthdate").val();
+    let contact = $("#contact").val();
+    let username = $("#username").val();
+    let email = $("#email").val();
+    let password = $("#password").val();
+
+    if (!fullname || !nickname || !address || !birthdate ||
+        !contact || !username || !email || !password) {
+        alert("All fields required!");
+        return;
+    }
+
+    if (isNaN(contact)) {
+        alert("Contact must be numbers only!");
+        return;
+    }
+
+    let user = {
+        fullname,
+        nickname,
+        address,
+        birthdate,
+        contact,
+        username,
+        email,
+        password
+    };
+
+    users.push(user);
+
+    alert("User Added Successfully!");
+
+    // ✅ REDIRECT TO LOGIN PAGE
+    window.location.href = "login.html";
+});
+
+// Save user in localStorage
+
+
+
+        </script>
+
+    </body>
+
+</html>
